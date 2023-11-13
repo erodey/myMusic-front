@@ -1,0 +1,9 @@
+.album-not-found {
+  max-height: 500px;
+  height: 50vh;
+}
+
+.album-loading {
+  max-height: 200px;
+  height: 20vh;
+}

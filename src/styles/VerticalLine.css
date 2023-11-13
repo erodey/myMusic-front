@@ -1,0 +1,5 @@
+.vertical-line {
+  width: 1px;
+  background-color: black;
+  min-height: 100%;
+}

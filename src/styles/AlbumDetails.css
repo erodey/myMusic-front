@@ -1,0 +1,32 @@
+.album-details {
+  display: block;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+  padding: 4rem;
+  margin-bottom: 3rem;
+}
+
+.album-details-header {
+  text-align: left;
+  display: flex;
+}
+
+.album-details-header > div > p {
+  margin-top: 1rem;
+}
+
+.album-details-body {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.album-details-header > img {
+  margin-right: 2rem;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  min-width: 100px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 4px;
+}

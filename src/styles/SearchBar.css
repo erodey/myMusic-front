@@ -1,0 +1,19 @@
+.searchBar {
+  max-width: 1000px;
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar > input {
+  min-width: 50%;
+  height: 1.3rem;
+  border: 1px solid grey;
+  border-left: none; 
+  border-right: none;
+}
+
+.searchBtn {
+  padding: 0 0.4rem;
+  border: 1px solid grey;
+}
