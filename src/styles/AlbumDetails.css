@@ -10,10 +10,6 @@
   display: flex;
 }
 
-.album-details-header > div > p {
-  margin-top: 1rem;
-}
-
 .album-details-body {
   margin-top: 1.5rem;
   width: 100%;
@@ -22,11 +18,32 @@
 .album-details-header > img {
   margin-right: 2rem;
   display: block;
-  width: 100%;
-  max-width: 400px;
+  max-width: 200px;
   min-width: 100px;
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
   border-radius: 4px;
 }
+
+.album-description > p {
+  margin-top: 0.5rem;
+}
+
+.tracklist-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.tracklist-table > thead th:nth-child(1) {
+  width: 5%;
+}
+
+.tracklist-table > thead th:nth-child(2) {
+  width: 90%;
+}
+
+.tracklist-table > thead th:nth-child(3) {
+  width: 5%;
+}
+

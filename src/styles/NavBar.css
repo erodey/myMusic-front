@@ -17,6 +17,7 @@ li a {
 }
 
 #navbar {
+  display: block;
   height: 5vh;
   min-height: 30px;
   display: flex;

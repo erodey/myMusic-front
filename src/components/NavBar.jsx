@@ -15,7 +15,7 @@ function NavBar() {
       <ul>
         <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/albums">Albums</CustomLink>
-        <CustomLink to="/songs">Songs</CustomLink>
+        <CustomLink to="/about">About</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
       </ul>
     </div>

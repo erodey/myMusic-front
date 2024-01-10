@@ -1,5 +1,9 @@
-#album-header {
+#header {
   margin-top: 3rem;
   margin-bottom: 3rem;
   text-align: center;
+}
+
+#header > h1 {
+  margin-bottom: 1rem;
 }

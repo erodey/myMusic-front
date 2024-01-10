@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Card from '../Card'
+import AlbumCard from './AlbumCard'
 import NavBar from '../NavBar'
-import AlbumHeader from './AlbumHeader'
+import Header from '../Header'
 import SearchBar from '../SearchBar'
 import { useLocation } from 'react-router-dom'
 
@@ -30,7 +30,7 @@ function AlbumsSearchPageAlt() {
   return (
     <div>
       <NavBar />
-      <AlbumHeader />
+      <Header topic={"albums"}/>
       <SearchBar placeHolder={text} toAlt={false} topic={'albums'}/>
       <div>
         {
@@ -38,10 +38,9 @@ function AlbumsSearchPageAlt() {
             if(loaded){
               return albums.length != 0 ? albums.map((album) => {
                 return (
-                  <Card key={album.albumId} 
+                  <AlbumCard key={album.albumId} 
                     albumId={album.albumId} 
                     src={album.coverImageUrl} 
-                    image='albums_wallpaper.png' 
                     title={album.albumName + ' - ' + album.author} 
                     description='this is description'/>
                 )

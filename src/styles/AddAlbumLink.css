@@ -1,0 +1,14 @@
+.add-album-link {
+  text-decoration: none;
+  color: black;
+  border: black 1px solid;
+  background-color: var(--cream-color);
+  padding: 0.6rem;
+  border-radius: 0.3rem;
+  transition: background-color 0.3s;
+
+}
+
+.add-album-link:hover {
+  background-color: var(--cream-color-half-opacity);
+}

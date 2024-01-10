@@ -26,7 +26,25 @@ html {
   align-items: center;
 }
 
+.centered-content-along-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .centered-text {
   text-align: center;
 }
 
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2);
+}
+
+.fetching {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10%;
+}

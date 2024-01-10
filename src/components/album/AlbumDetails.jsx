@@ -7,7 +7,6 @@ function AlbumDetails(props) {
 
   const [album, setAlbum] = useState({})
   const [songInfo, setSongInfo] = useState([{}])
-  // const navigate = useNavigate()
 
   useEffect(() => {
     setAlbum(props.album)
@@ -18,35 +17,41 @@ function AlbumDetails(props) {
 
   return (
     <div className='container album-details'>
-      {/* <button onClick={() => navigate(-1)}>Back</button> */}
       <div className="album-details-header">
         <img src={album.coverImageUrl} alt="album-cover" />
         <div>
           <h1>{album?.albumName} - {album?.author}</h1>   
-          <p>Description</p>
+          <div className='album-description'>
+            <p> Year of release: {album?.releaseYear}</p>
+            <p> Total number of songs: {album?.numberOfSongs}</p>
+            <p> Current number of songs: {album?.currentNumberOfSongs}</p>
+          </div>
         </div>
       </div>
       <div className="container album-details-body">
-        <p>
-          Album name: {album?.albumName} <br/>
-          Author: {album?.author} <br/>
-          Date of release: {album?.releaseDate} <br/>
-          Total number of songs: {album?.numberOfSongs} <br/>
-          Current number of songs: {album?.currentNumberOfSongs} <br/>
-          Current songs: <br/>
-          <>
+        <p>Tracklist</p>
+        <table className='tracklist-table'>
+          <thead>
+            <tr>
+              <th scope='column'></th>
+              <th scope='column'></th>
+              <th scope='column'></th>
+            </tr>
+          </thead>
+          <tbody>
             {
-              songInfo?.map((song) => {
+              songInfo?.map((song, index) => {
                 return (
                   <SongInfo 
                     key={song.songId} 
+                    index={index}
                     song={song} 
                   />
                 )
               })
             }
-          </>
-        </p>
+          </tbody>
+        </table>
       </div>
     </div>
   )

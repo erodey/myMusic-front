@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'    
+import { useNavigate, useParams } from 'react-router-dom'    
 import NavBar from '../NavBar'
 import AlbumDetails from './AlbumDetails'
 
@@ -8,6 +8,11 @@ function AlbumDetailsPage() {
   const { id } = useParams()
 
   const [album, setAlbum] = useState({})
+  const navigate = useNavigate()
+
+  const moveToEdit = () => {
+    navigate(`/albums/${id}/edit`)
+  }
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/album/byId/${id}`, {
@@ -22,11 +27,10 @@ function AlbumDetailsPage() {
     })
   }, [])
 
-  console.log(album)
-
   return (
     <div>
       <NavBar /> 
+      <button type="button" onClick={moveToEdit }>edit</button>
       <AlbumDetails 
         album={album} 
       />

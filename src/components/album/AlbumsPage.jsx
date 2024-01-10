@@ -1,44 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import Card from '../Card'
+import AlbumCard from './AlbumCard'
 import NavBar from '../NavBar'
-import AlbumHeader from './AlbumHeader'
+import Header from '../Header'
 import SearchBar from '../SearchBar'
+import { axiosPrivate } from '../../api/axios'
+import AddAlbumLink from './AddAlbumLink'
 
 function AlbumsPage() {
 
-
   const [albums, setAlbums] = useState([])
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/album/all", {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      setAlbums(data)
+    
+    axiosPrivate.get("/album/all").then((res) => {
+      setAlbums(res.data)
+      setLoaded(true)
     })
   }, [])
+
 
   return (
     <div>
       <NavBar />
-      <AlbumHeader />
+      <Header topic={"albums"}/>
+      <AddAlbumLink />
       <SearchBar placeHolder=' search...' toAlt={false} topic={"albums"}/>
       <div>
         {
-          albums.map((album) => {
+          loaded ? albums.map((album) => {
             return (
-              <Card key={album.albumId} 
+              <AlbumCard key={album.albumId} 
                 albumId={album.albumId} 
                 src={album.coverImageUrl} 
-                image='albums_wallpaper.png' 
                 title={album.albumName + ' - ' + album.author} 
                 description='this is description'/>
             )
-          })
+          }) : <div className='fetching'>fetching...</div>
         }
       </div>
     </div>

@@ -1,21 +1,28 @@
 import React from 'react'
 import { useState, useEffect } from 'react' 
-import '../../styles/SongInfo.css'
 
-function SongInfo(props) {
-  const [song, setSong] = useState({})
+function SongInfo({index, song}) {
+  const [songInfo, setSong] = useState({})
 
   useEffect(() => {
-    setSong(props.song)
-  }, [props.song])
+    setSong(song)
+  }, [])
+
+  const convertDuration = (duration) => {
+    let minutes = duration/60 | 0
+    let seconds = duration%60
+    minutes = minutes.toString()
+    seconds = seconds.toString()
+    let finalDuration = minutes.concat(":", seconds)
+    return finalDuration
+  }
 
   return (
-    <div className='song-info'>
-      <p>
-        Song name: {song?.songName} <br/>
-        Duration in seconds : {song?.songDurationInSeconds} <br/>
-      </p>
-    </div>
+    <tr>
+      <td>{index + 1}</td>
+      <td>{songInfo?.songName}</td>
+      <td>{convertDuration(songInfo?.songDurationInSeconds)}</td>
+    </tr>
   )
 }
 
