@@ -1,21 +1,23 @@
-.album-details {
-  display: block;
+.album-details-edit {
   box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
   padding: 4rem;
   margin-bottom: 3rem;
 }
 
-.album-details-header {
+.album-details-edit > button {
+  margin-top: 3rem;
+}
+
+.album-details-header-edit {
+  text-align: left;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
 }
 
-.album-details-header-inner  {
-  text-align: left;
-  display: flex;
-  min-width: 60%;
+.album-details-edit-header-inputs > input {
+  margin-bottom: 1rem;
+  padding: 0.3rem;
+  font-size: 1rem;
 }
 
 .album-details-body {
@@ -23,7 +25,7 @@
   width: 100%;
 }
 
-.album-details-header-inner > img {
+.album-details-header-edit > img {
   margin-right: 2rem;
   display: block;
   max-width: 200px;

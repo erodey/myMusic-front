@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar'
 import '../../styles/AddAlbumPage.css'
 import AddAlbumHeader from './AddAlbumHeader'
@@ -12,8 +12,10 @@ const AddAlbumPage = () => {
 
   const axiosPrivate = useAxiosPrivate()
 
-  const regex = /^[0-5]?\d:[0-5]\d$/
+  const [inputs, setInputs] = useState({})
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
   const [songCount, setSongCount] = useState(1)
+  const [songsToSubmit, setSongsToSubmit] = useState([])
   const [songs, setSongs] = useState([
     {
       songId: 0,
@@ -47,30 +49,48 @@ const AddAlbumPage = () => {
     setSongs(data)
   }
 
-  const collectData = () => {
-    let data = [...songs]
-    data.map((song) => {
+  const collectSongs = () => {
+    let data = JSON.parse(JSON.stringify(songs))
+    let songsToSubmitTemp = []
+    data.map((song, index) => {
       const parts = song.durationInput.split(":")
       const seconds = +parts.pop()
+      if(seconds < 10) {
+        seconds = "0".concat(seconds)
+      }
       const minutes = +parts.pop()
       const finalDuration = 60*minutes + seconds
-      song.durationInput = finalDuration
+      songsToSubmitTemp = [
+        ...songsToSubmitTemp,
+        {
+          songName: song.nameInput,
+          songDurationInSeconds: finalDuration,
+          position: index + 1
+        }
+      ]
     })
+
+    setSongsToSubmit(songsToSubmitTemp)
   }
+
+
+  useEffect(() => {
+    console.log('inputs', inputs)
+    axios.post(`/album/addAlbum`, inputs)
+    .then(res => {
+        console.log('rated album', res.data)
+      })
+    .catch(err => console.log('error: ', err.response))
+  }, [inputs])
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    collectData()
-
-    // setInputs({
-    //   ...inputs,
-    //   songs: inputSongs
-    // })
-    // axios.post(`/album/addAlbum`, inputs)
-    // .then(res => {
-    //     console.log('rated album', res.data)
-    //   })
-    // .catch(err => console.log('error: ', err.response))
+    setInputs({
+      ...headerInputs,
+      songs: songsToSubmit
+    })
+    setSubmitButtonDisabled(true)
   }
 
 
@@ -98,6 +118,7 @@ const AddAlbumPage = () => {
                         name='nameInput'
                         value={song.nameInput}
                         onChange={e => handleNameChange(e, index)}
+                        onBlur={collectSongs}
                         required
                       />
                     </div>
@@ -109,6 +130,7 @@ const AddAlbumPage = () => {
                           value={song.durationInput}
                           onChange={e => handleDurationChange(e, index)}
                           pattern='^[1-5]?[0-9]:[0-5][0-9]$'
+                          onBlur={collectSongs}
                           required
                         />
                     </div>  
@@ -151,6 +173,7 @@ const AddAlbumPage = () => {
           <button 
             className='save-album-button' 
             type="submit"
+            disabled={submitButtonDisabled}
           >Save</button>
         </form> 
       </div>  

@@ -104,29 +104,6 @@ const AddAlbumHeader = ({inputs, setInputs}) => {
           required
         />
       </div>
-      <div className='add-album-entry'>
-        <label>Total number of songs</label>
-        <input 
-          type="text"
-          value={total}
-          onChange={(e)=>{
-            setTotal(e.target.value)
-          }}
-          onBlur={()=>{
-            setInputs({
-              ...inputs,
-              numberOfSongs: total
-            })
-          }}
-          onKeyDown={()=>{
-            setInputs({
-              ...inputs,
-              numberOfSongs: total
-            })
-          }}
-          required
-        />
-      </div>
     </div>
   )
 }

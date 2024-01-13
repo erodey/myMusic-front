@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react' 
 
-function SongInfo({index, song}) {
+function SongInfo({position, index, song}) {
   const [songInfo, setSong] = useState({})
 
   useEffect(() => {
@@ -11,15 +11,19 @@ function SongInfo({index, song}) {
   const convertDuration = (duration) => {
     let minutes = duration/60 | 0
     let seconds = duration%60
+    if(seconds < 10) {
+      seconds = seconds.toString()
+      seconds = "0".concat(seconds)
+    }
     minutes = minutes.toString()
-    seconds = seconds.toString()
+
     let finalDuration = minutes.concat(":", seconds)
     return finalDuration
   }
 
   return (
     <tr>
-      <td>{index + 1}</td>
+      <td>{position}</td>
       <td>{songInfo?.songName}</td>
       <td>{convertDuration(songInfo?.songDurationInSeconds)}</td>
     </tr>

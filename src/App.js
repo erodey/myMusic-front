@@ -41,9 +41,10 @@ function App() {
         <Route element={<RequireAuth allowedRoles={["ROLE_USER", "ROLE_ADMIN"]}/>}>
           <Route path='/albums/:id/rerate' element={<ReRateAlbumPage />} />
         </Route>
-        <Route element={<RequireAuth allowedRoles={["ROLE_ADMIN"]}/>}>
-          <Route path='/albums/addAlbum' element={<AddAlbumPage />} />
-        </Route>
+        {/* <Route element={<RequireAuth allowedRoles={["ROLE_ADMIN"]}/>}> */}
+        {/*   <Route path='/albums/addAlbum' element={<AddAlbumPage />} /> */}
+        {/* </Route> */}
+        <Route path='/albums/addAlbum' element={<AddAlbumPage />} />
       </Routes>
    </div>
   );

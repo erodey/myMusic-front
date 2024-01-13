@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../../styles/AlbumDetails.css'
+import '../../styles/AlbumDetailsEdit.css'
 import SongInfoEdit from '../song/SongInfoEdit'
 import axios from '../../api/axios'
 // import { useNavigate} from "react-router-dom"
@@ -17,12 +17,10 @@ function AlbumDetailsEdit({ albumProps }) {
   const [albumName, setAlbumName] = useState('')
   const [author, setAuthor] = useState('')
   const [albumReleaseYear, setAlbumReleaseYear] = useState('')
-  const [albumTotalSongs, setAlbumTotalSongs] = useState('')
 
   const [albumNameChanged, setAlbumNameChanged] = useState(false) 
   const [authorChanged, setAuthorChanged] = useState(false) 
   const [releaseYearChanged, setReleaseYearChanged] = useState(false) 
-  const [totalSongsChanged, setTotalSongsChanged] = useState(false) 
 
 
   useEffect(() => {
@@ -31,7 +29,6 @@ function AlbumDetailsEdit({ albumProps }) {
     setAlbumName(albumProps?.albumName)
     setAuthor(albumProps?.author)
     setAlbumReleaseYear(albumProps?.releaseYear)
-    setAlbumTotalSongs(albumProps?.numberOfSongs)
     setSongsToChange(albumProps.songs.map((song, index) => {
       return {
         albumId: albumProps.albumId,
@@ -68,10 +65,6 @@ function AlbumDetailsEdit({ albumProps }) {
       code += 4
       data.releaseYear = albumReleaseYear
     }
-    if(totalSongsChanged){
-      code += 8
-      data.numberOfSongs = albumTotalSongs
-    }
 
     data.code = code
     setAlbumInfoToChange(data)
@@ -85,13 +78,13 @@ function AlbumDetailsEdit({ albumProps }) {
   }
 
   return (
-    <form className='container album-details' onSubmit={(e) => {
+    <form className='centered-content-along-y container album-details-edit' onSubmit={(e) => {
       e.preventDefault()
       handleSubmit()
     }}>
-      <div className="album-details-header">
+      <div className="album-details-header-edit">
         <img src={album.coverImageUrl} alt="album-cover" />
-        <div>
+        <div className='album-details-edit-header-inputs'>
           <input 
             type='text'
             value={albumName}
@@ -137,21 +130,6 @@ function AlbumDetailsEdit({ albumProps }) {
               onBlur={collectData}
             />
             <br/>
-            <label> Total number of songs: </label><input 
-              type="text" 
-              name="totalSongs" 
-              value={albumTotalSongs}
-              onFocus={() => {
-                if(!totalSongsChanged){
-                  setAlbumTotalSongs('')
-                } else setTotalSongsChanged(true) 
-              }}
-              onChange={(e) => {
-                setAlbumTotalSongs(e.target.value)
-              }}
-              onBlur={collectData}
-            />
-            <p> Current number of songs: {album?.currentNumberOfSongs}</p>
           </div>
         </div>
       </div>
@@ -167,11 +145,14 @@ function AlbumDetailsEdit({ albumProps }) {
           </thead>
           <tbody>
             {
-              songInfo?.map((song, index) => {
+              songInfo
+              ?.sort((a, b) => parseFloat(a.position) - parseFloat(b.position))
+              ?.map((song, index) => {
                 return (
                   <SongInfoEdit 
                     key={song.songId} 
                     index={index}
+                    position={song.position}
                     song={song} 
                     songsToChange={songsToChange}
                     setSongsToChange={setSongsToChange}       
@@ -182,7 +163,7 @@ function AlbumDetailsEdit({ albumProps }) {
           </tbody>
         </table>
       </div>
-      <button type='submit'>Save</button>
+      <button className='card-button' type='submit'>Save</button>
     </form>
   )
 }

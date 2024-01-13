@@ -35,7 +35,7 @@
   justify-content: space-between;
 }
 
-.card-body > div > a {
+.card-button {
   font-size: 1rem;
   text-decoration: none;
   color: black;
@@ -47,7 +47,7 @@
   margin-bottom: 1rem;
 }
 
-.card-body > div > a:hover {
+.card-button:hover {
   background-color: var(--cream-color-half-opacity);
 }
 

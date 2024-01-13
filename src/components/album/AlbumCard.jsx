@@ -11,9 +11,9 @@ function AlbumCard({albumId, src, title, description}) {
         <div className="card-main">
           <h1 className="card-title">{title}</h1>
         </div>
-        <div className='centered-content-along-y card-links'>
-          <Link to={`/albums/${albumId}`}>View Details</Link>
-          <Link to={`/albums/${albumId}/rate`}>Rate</Link>
+        <div className='centered-content-along-y'>
+          <Link className='card-button' to={`/albums/${albumId}`}>View Details</Link>
+          <Link className='card-button' to={`/albums/${albumId}/rate`}>Rate</Link>
         </div>
       </div>
     </div>

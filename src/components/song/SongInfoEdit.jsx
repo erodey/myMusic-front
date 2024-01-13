@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react' 
 
-function SongInfoEdit({index, song, songsToChange, setSongsToChange}) {
+function SongInfoEdit({index, song, songsToChange, setSongsToChange, position}) {
   const [songInfo, setSongInfo] = useState({})
   const [songName, setSongName] = useState('')
   const [songDuration, setSongDuration] = useState('00:00')
@@ -19,8 +19,11 @@ function SongInfoEdit({index, song, songsToChange, setSongsToChange}) {
   const convertDuration = (duration) => {
     let minutes = duration/60 | 0
     let seconds = duration%60
+    if(seconds < 10) {
+      seconds = seconds.toString()
+      seconds = "0".concat(seconds)
+    }
     minutes = minutes.toString()
-    seconds = seconds.toString()
     let finalDuration = minutes.concat(":", seconds)
     setIsLoaded(true)
     return finalDuration
@@ -59,7 +62,7 @@ function SongInfoEdit({index, song, songsToChange, setSongsToChange}) {
 
   return (
     <tr>
-      <td>{index + 1}</td>
+      <td>{position}</td>
       <td><input 
         type="text" 
         value={songName}
