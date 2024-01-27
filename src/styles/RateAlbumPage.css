@@ -1,11 +1,13 @@
 .rating-form-body {
-  margin-top: 10vh;
-  padding: 2rem;
+  width: 400px;
+}
+
+.cution {
+  padding-top: 100px;
 }
 
 .rate-button {
   margin-top: 2rem;
-  padding: 0.3rem 1rem;
 }
 
 .rate-album-form {

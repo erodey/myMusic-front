@@ -2,8 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 3rem;
-  width: 80%;
+  width: 350px;
 }
 
 .song-entry-sub{

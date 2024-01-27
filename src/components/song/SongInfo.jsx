@@ -25,7 +25,12 @@ function SongInfo({position, index, song}) {
     <tr>
       <td>{position}</td>
       <td>{songInfo?.songName}</td>
-      <td>{convertDuration(songInfo?.songDurationInSeconds)}</td>
+      <td
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between'
+        }}
+      ><span></span><p>{convertDuration(songInfo?.songDurationInSeconds)}</p></td>
     </tr>
   )
 }

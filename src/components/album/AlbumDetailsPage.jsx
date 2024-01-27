@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'    
-import NavBar from '../NavBar'
 import AlbumDetails from './AlbumDetails'
+import NavBarWrapper from '../NavBarWrapper'
 
 function AlbumDetailsPage() {
 
@@ -22,9 +22,12 @@ function AlbumDetailsPage() {
     })
   }, [])
 
+  console.log('album', album)
+
   return (
     <div>
-      <NavBar /> 
+      <NavBarWrapper />
+      <div className="cution container"></div>
       <AlbumDetails 
         album={album} 
       />

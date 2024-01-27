@@ -77,13 +77,48 @@ function AlbumDetailsEdit({ albumProps }) {
     axios.put("/song/updateSongs", songsToChange)
   }
 
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+  const breakpoint = 900
+  const [width, setWidth] = useState()
+
+  useEffect(() => {
+    const handleResizeWindow = () => setInnerWidth(window.innerWidth)
+
+    window.addEventListener("resize", handleResizeWindow)
+
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow)
+    }
+  }, [])
+  
+  useEffect(() => {
+    let temp = breakpoint > innerWidth ? breakpoint : innerWidth
+    setWidth(temp)
+  }, [innerWidth])
+
+
+
   return (
     <form className='centered-content-along-y container album-details-edit' onSubmit={(e) => {
       e.preventDefault()
       handleSubmit()
-    }}>
-      <div className="album-details-header-edit">
-        <img src={album.coverImageUrl} alt="album-cover" />
+    }}
+      style={{
+        padding: `${width/90}px`
+      }}
+    >
+
+      <div className="album-details-header-edit"
+        style={{
+          height: `${width/8.5}px`,
+        }}
+      >
+        <img src={album.coverImageUrl} alt="album-cover" 
+          style={{
+            height: `${width/8.5}px`,
+            marginRight:`${width/150}px`
+          }}
+        />
         <div className='album-details-edit-header-inputs'>
           <input 
             type='text'
@@ -113,8 +148,12 @@ function AlbumDetailsEdit({ albumProps }) {
             }}
             onBlur={collectData}
           />   
-          <div className='album-description'>
-            <label> Year of release: </label><input 
+          <div className='album-description'
+            style={{
+              marginTop: `${width/100}px`
+            }}
+          >
+            <label> released in  </label><input 
               type="text" 
               name="releaseYear" 
               value={albumReleaseYear}
@@ -128,6 +167,7 @@ function AlbumDetailsEdit({ albumProps }) {
                 setAlbumReleaseYear(e.target.value)
               }}
               onBlur={collectData}
+              size='3'
             />
             <br/>
           </div>
@@ -138,9 +178,21 @@ function AlbumDetailsEdit({ albumProps }) {
         <table className='tracklist-table'>
           <thead>
             <tr>
-              <th scope='column'></th>
-              <th scope='column'></th>
-              <th scope='column'></th>
+              <th 
+                scope='column'
+              ></th>
+              <th 
+                scope='column'
+                style={{
+                  width: `${90 - (1900-width)/100}%`
+                }}
+              ></th>
+              <th 
+                scope='column'
+                style={{
+                  width: `${(1900-width)/100 + 5}%`
+                }}
+              ></th>
             </tr>
           </thead>
           <tbody>
@@ -163,7 +215,15 @@ function AlbumDetailsEdit({ albumProps }) {
           </tbody>
         </table>
       </div>
-      <button className='card-button' type='submit'>Save</button>
+      <button 
+        className='card-button' 
+        type='submit'
+        style={{
+          fontSize: '1rem', 
+          padding: '0.2rem', 
+          marginTop: `${width/100}px`,
+        }}
+      >Save</button>
     </form>
   )
 }

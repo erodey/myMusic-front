@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import NavBar from '../NavBar'
 import SongRatingEntry from './SongRatingEntry'
 import { useParams } from 'react-router-dom'
 import '../../styles/RateAlbumPage.css'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
+import { useLocation, useNavigate } from 'react-router-dom'
+import useAuth from '../../hooks/useAuth'
+import NavBarWrapper from '../NavBarWrapper'
 
 const RateAlbumPage = () => {
 
@@ -12,14 +14,25 @@ const RateAlbumPage = () => {
   const [inputs, setInputs] = useState([])
   const {id} = useParams()
   const [loaded, setLoaded] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const {setAuth} = useAuth()
 
   useEffect(()=>{
-    axiosPrivate.get(`/album/byId/${id}`)
-    .then((res) => {
-      setAlbum(res.data)
-      setLoaded(true)
-    })
-    .catch(er => console.log('error: ', er.response))
+
+    const getRatedAlbum = async () => {
+      try {
+        const response = await axiosPrivate.get(`/album/byId/${id}`)
+        setAlbum(response.data)
+        setLoaded(true)
+      } catch (error) {
+        console.log('error: ', error.response)
+        setAuth({})
+        navigate('/login', {state: { from: location}, replace: true})
+      }
+    }
+
+    getRatedAlbum()
 
     return () => {
       setLoaded(false)
@@ -50,14 +63,44 @@ const RateAlbumPage = () => {
     return finalDuration
   }
 
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+  const breakpoint = 900
+  const [width, setWidth] = useState()
+
+  useEffect(() => {
+    const handleResizeWindow = () => setInnerWidth(window.innerWidth)
+
+    window.addEventListener("resize", handleResizeWindow)
+
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow)
+    }
+  }, [])
+
+  useEffect(() => {
+    let temp = breakpoint > innerWidth ? breakpoint : innerWidth
+    setWidth(temp)
+  }, [innerWidth])
+
   return (
     <div>
-      <NavBar />
-      <div className="container centered-content-along-y rating-form-body shadow">
-        <h3 className="rating-form-header">{loaded ? album.albumName : "fetching..."} - {loaded ? album.author : "fetching..."}</h3>
+      <NavBarWrapper />
+      <div className="cution container"></div>
+      <div className="centered-block centered-content-along-y rating-form-body shadow"
+        style={{
+          padding: `${width/90}px`
+        }}
+      >
+        <h3 className="rating-form-header"
+          style={{
+            marginBottom: `${width/50}px`
+          }}
+        >{loaded ? album.albumName : "fetching..."} - {loaded ? album.author : "fetching..."}</h3>
         <form className='rate-album-form centered-content-along-y' onSubmit={handleSubmit}>
           {
-            loaded ? album?.songs.map((song, index) => {
+            loaded ? album?.songs
+              ?.sort((a, b) => parseFloat(a.position) - parseFloat(b.position))
+              .map((song, index) => {
               return (
                 <SongRatingEntry 
                   key={song.songId} 
@@ -72,7 +115,7 @@ const RateAlbumPage = () => {
               )
             }) : <div className='fetching'>fetching...</div>
           }
-          <button className="rate-button" type="submit">Rate</button>
+          <button className="card-button rate-button" type="submit">Rate</button>
         </form>
       </div>  
     </div>

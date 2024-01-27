@@ -60,6 +60,25 @@ function SongInfoEdit({index, song, songsToChange, setSongsToChange, position}) 
     collectData()
   }, [songDurationInSeconds])
 
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+  const breakpoint = 800
+  const [width, setWidth] = useState()
+
+  useEffect(() => {
+    const handleResizeWindow = () => setInnerWidth(window.innerWidth)
+
+    window.addEventListener("resize", handleResizeWindow)
+
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow)
+    }
+  }, [])
+  
+  useEffect(() => {
+    let temp = breakpoint > innerWidth ? breakpoint : innerWidth
+    setWidth(temp)
+  }, [innerWidth])
+
   return (
     <tr>
       <td>{position}</td>
@@ -74,12 +93,14 @@ function SongInfoEdit({index, song, songsToChange, setSongsToChange, position}) 
         }}
         onChange={(e) => setSongName(e.target.value)}
         onBlur={collectData}
+        size='35'
       />
       </td>
-      <td><input 
+      <td>
+        <span></span>
+        <input 
         type="text" 
         value={isLoaded ? songDuration : "00:00"}
-        size="5"
         pattern='^[1-5]?[0-9]:[0-5][0-9]$'
         onFocus={() => {
           if(!songDurationChanged){
@@ -91,6 +112,7 @@ function SongInfoEdit({index, song, songsToChange, setSongsToChange, position}) 
         onBlur={() => {
           reconvertDuration()
         }}
+        size='3'
       />
       </td>
     </tr>

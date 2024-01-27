@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import AlbumCard from './AlbumCard'
-import NavBar from '../NavBar'
 import Header from '../Header'
 import SearchBar from '../SearchBar'
 import { axiosPrivate } from '../../api/axios'
 import AddAlbumLink from './AddAlbumLink'
+import NavBarWrapper from '../NavBarWrapper'
 
 function AlbumsPage() {
 
@@ -22,7 +22,8 @@ function AlbumsPage() {
 
   return (
     <div>
-      <NavBar />
+      <NavBarWrapper />
+      {/* <NavBar /> */}
       <Header topic={"albums"}/>
       <AddAlbumLink />
       <SearchBar placeHolder=' search...' toAlt={false} topic={"albums"}/>
@@ -33,7 +34,9 @@ function AlbumsPage() {
               <AlbumCard key={album.albumId} 
                 albumId={album.albumId} 
                 src={album.coverImageUrl} 
-                title={album.albumName + ' - ' + album.author} 
+                albumName={album.albumName}
+                author={album.author}
+                releaseYear={album.releaseYear}
                 description='this is description'/>
             )
           }) : <div className='fetching'>fetching...</div>

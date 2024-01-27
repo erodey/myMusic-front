@@ -1,19 +1,36 @@
 import '../../styles/Card.css'
 import { Link } from 'react-router-dom'
 
-function AlbumRatingCard({albumId, src, title, albumRating}) {
+function AlbumRatingCard({albumId, src, albumName, author, albumRating}) {
 
   return (
     <div className='container card'>
-      <img src={src} alt='album-cover'/>
-      <div className="card-body">
-        <div className="card-main">
-          <h1 className="card-title">{title}</h1>
-          <p className="card-description">Rating: {albumRating}</p>
+      <div className='card-body'>
+        <img src={src} alt='album-cover' />
+        <div className="card-header">
+          <p className="card-title">{albumName} - {author}</p>
+          <p className="card-description"> 
+            rated as a {albumRating}
+          </p>
         </div>
-        <div className='centered-content-along-y card-links'>
-          <Link to={`/albums/${albumId}`}>View Details</Link>
-          <Link to={`/albums/${albumId}/rerate`}>Rerate</Link>
+      </div>
+      <div className="card-links">
+        <div className='centered-content-along-y centered-text'>
+          <Link 
+            className='card-button' 
+            to={`/albums/${albumId}`}
+            style={{
+              width: '7vw',
+              marginBottom: '0.5vw'
+            }}
+          >View Details</Link>
+          <Link 
+            className='card-button' 
+            to={`/albums/${albumId}/rerate`}
+            style={{
+              width: '7vw'
+            }}
+          >Rerate</Link>
         </div>
       </div>
     </div>

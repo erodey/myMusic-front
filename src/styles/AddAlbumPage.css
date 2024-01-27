@@ -1,15 +1,14 @@
 .add-album-page {
-  margin-top: 10vh;
   padding: 2rem;
+  padding-top: 120px;
 }
 
 .save-album-button {
   font-size: 1.2rem;
   text-decoration: none;
   color: black;
-  border: black 2px solid;
+  border: black 1px solid;
   background-color: var(--cream-color);
-  padding: 0.6rem;
   border-radius: 0.3rem;
   transition: background-color 0.3s;
   margin-top: 3vh;
@@ -17,4 +16,11 @@
 
 .save-album-button:hover {
   background-color: var(--cream-color-half-opacity);
+}
+
+.x-mark-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

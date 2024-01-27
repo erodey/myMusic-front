@@ -5,6 +5,7 @@ import useAuth from '../hooks/useAuth'
 function Header({topic}) {
   const [title, setTitle] = useState('')
   const [description, setDesciption] = useState('')
+  const [style, setStyle] = useState({})
   const {auth} = useAuth()
 
   useEffect(() => {
@@ -15,6 +16,7 @@ function Header({topic}) {
       setTitle("Welcome")
       setDesciption("What is this website for?")
     } else if(topic === "profile"){
+      setStyle({paddingTop: '0',})
       setTitle(`Hello, ${auth.username}`)
       setDesciption("Here you can see information about your rated albums and songs")
     }
@@ -22,7 +24,7 @@ function Header({topic}) {
   }, [])
 
   return (
-    <div id="header" className='container'>
+    <div id="header" className='container' style={style}>
       <h1>{title}</h1>
       <p>{description}</p>
     </div>

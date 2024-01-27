@@ -3,5 +3,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
 }
 

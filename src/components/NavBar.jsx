@@ -6,19 +6,19 @@ function NavBar() {
   let path = window.location.pathname
 
   let className = "container"
-  if (path != '/') 
+  if (path != '/' && path != '/home') 
     className += ' not-in-home'
   else className += '' 
 
   return (
-    <div id="navbar" className={className}>
+    <nav id="navbar" className={className}>
       <ul>
         <CustomLink to="/">Home</CustomLink>
         <CustomLink to="/albums">Albums</CustomLink>
         <CustomLink to="/about">About</CustomLink>
         <CustomLink to="/profile">Profile</CustomLink>
       </ul>
-    </div>
+    </nav>
   )
 }
 

@@ -26,10 +26,32 @@ const SongRatingEntry = ({index, songName, songDuration, inputs, setInputs, rera
     }
   }
 
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+  const breakpoint = 900
+  const [width, setWidth] = useState()
+
+  useEffect(() => {
+    const handleResizeWindow = () => setInnerWidth(window.innerWidth)
+
+    window.addEventListener("resize", handleResizeWindow)
+
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow)
+    }
+  }, [])
+
+  useEffect(() => {
+    let temp = breakpoint > innerWidth ? breakpoint : innerWidth
+    setWidth(temp)
+  }, [innerWidth])
+
+
 
   return (
-    <div className='song-entry-main'>
-      <div>
+    <div className='song-entry-main'
+    >
+      <div
+      >
         <p>{songName}</p>
         <p>{songDuration}</p>
       </div>
@@ -37,9 +59,8 @@ const SongRatingEntry = ({index, songName, songDuration, inputs, setInputs, rera
         <label htmlFor="songRating">Rating (0-10) :</label>
         <input 
           type="text" 
-          // min="0"
-          // max="10"
           pattern='^[0-9]|10'
+          size='2'
           name="songRating"
           onChange={(e) => {
             setInputValue(e.target.value)

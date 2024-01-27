@@ -1,8 +1,6 @@
 .album-details {
   display: block;
   box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
-  padding: 4rem;
-  margin-bottom: 3rem;
 }
 
 .album-details-header {
@@ -18,16 +16,20 @@
   min-width: 60%;
 }
 
+.album-details-title {
+  word-wrap: break-word;
+  max-width: 30vw;
+}
+
 .album-details-body {
   margin-top: 1.5rem;
   width: 100%;
 }
 
 .album-details-header-inner > img {
-  margin-right: 2rem;
   display: block;
   max-width: 200px;
-  min-width: 100px;
+  max-height: 200px;
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;

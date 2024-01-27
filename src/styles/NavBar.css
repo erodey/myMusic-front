@@ -3,30 +3,32 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
+  width: 80%;
 
-li {
-  float: left;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 li a {
-  padding: 8px;
   text-decoration: none;
   color: black;
-  margin: 0 2.5rem;
 }
 
 #navbar {
-  display: block;
-  height: 5vh;
+  height: 50px;
   min-height: 30px;
+  position: fixed;
+  left: 20%;
+  right: 20%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   border-radius: 5px;
   background-color: white;
-  margin-bottom: 2vh;
   padding: 1.5rem;
+  min-width: 400px;
+
 }
 
 #navbar.not-in-home {

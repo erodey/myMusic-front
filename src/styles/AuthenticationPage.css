@@ -35,3 +35,58 @@
   max-width: 100px;
   margin: 0.6rem 0 1rem;
 }
+
+/* .login-form-register { */
+/*   height: 350px; */
+/*   width: 25%; */
+/* } */
+
+/* .register-main { */
+/*   display: flex; */
+/*   width: 50%; */
+/*   justify-content: space-between; */
+/*   align-items: center; */
+/* } */
+
+.register-error {
+  position: absolute;
+  width: 200px;
+  top: 370px;
+  left: 270px;
+
+}
+
+.register-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  width: 90%;
+  max-width: 500px;
+  height: 250px;
+  padding: 2rem;
+  background-color: rgb(255,153,153, .3);
+  border-radius: 10px;
+  min-width: 300px;
+}
+
+.password-info, .username-info {
+  width: 40%;
+}
+
+/* .register-info > p { */
+/*   margin-bottom: 1rem; */
+/* } */
+
+.hidden {
+  visibility: hidden;
+}
+
+
+.persist-check {
+  width: 80%;
+  padding: 1rem;
+}
+
+.persist-check > input {
+  margin-right: 0.5rem;
+}

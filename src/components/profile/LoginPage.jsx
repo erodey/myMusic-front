@@ -4,10 +4,11 @@ import axios from '../../api/axios'
 import NavBar from '../NavBar'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
+import NavBarWrapper from '../NavBarWrapper'
 
 function LoginPage() {
 
-  const {setAuth} = useAuth()
+  const {setAuth, persist, setPersist} = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -19,19 +20,6 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    // fetch("http://localhost:8080/api/auth/register", {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(json)
-    // })
-    // .then((response) => response.text())
-    // .then((data) => {
-    //     console.log("in data")
-    //     console.log(data)
-    // })
 
     const jsonData = {
       username: `${username}`,
@@ -69,9 +57,18 @@ function LoginPage() {
       })
   }
 
+  const togglePersist = () => {
+    setPersist(prev => !prev)
+  }
+
+  useEffect(() => {
+    localStorage.setItem('persist', persist)
+  }, [persist])
+
   return (
     <div className='auth-header'>
-      <NavBar />
+      <NavBarWrapper />
+      {/* <NavBar /> */}
       <form className='centered-text login-form' onSubmit={handleSubmit}>
         <label htmlFor='username'>Username</label>
         <input 
@@ -91,6 +88,15 @@ function LoginPage() {
           required={true}
           value={password}
         />
+        <div className='persist-check'>
+          <input 
+            type="checkbox"
+            id='persist'
+            onChange={togglePersist}
+            checked={persist}
+          />
+          <label htmlFor="persist">Remember me</label>
+        </div>
         <button type="submit" onClick={handleSubmit}>Login</button>
         {
           <span>{`${errorMessage}`}</span>

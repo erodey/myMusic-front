@@ -3,20 +3,37 @@
 
 * {
   --cream-color: #e4e1d0;
-  --cream-color-half-opacity: rgb(228, 225, 208, 0.5);
+  --cream-color-half-opacity: rgba(228, 225, 208, 0.5);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+.button {
+  padding: 0.2rem;
+  font-size: 1rem;
+}
+
+.cution {
+  padding-top: 100px;
+}
+
 html {
   font-family: 'Roboto Mono';
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .container {
+  width: 60%;
+  max-width: 1000px;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+.big-container {
   width: 90%;
   max-width: 1000px;
+  min-width: 400px;
   margin: 0 auto;
 }
 
@@ -24,6 +41,10 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.centered-block {
+  margin: 0 auto;
 }
 
 .centered-content-along-y {
@@ -48,3 +69,5 @@ html {
   text-align: center;
   margin-top: 10%;
 }
+
+

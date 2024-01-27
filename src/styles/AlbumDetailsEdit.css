@@ -1,11 +1,8 @@
 .album-details-edit {
   box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
-  padding: 4rem;
-  margin-bottom: 3rem;
 }
 
 .album-details-edit > button {
-  margin-top: 3rem;
 }
 
 .album-details-header-edit {
@@ -15,21 +12,16 @@
 }
 
 .album-details-edit-header-inputs > input {
-  margin-bottom: 1rem;
-  padding: 0.3rem;
-  font-size: 1rem;
 }
 
 .album-details-body {
-  margin-top: 1.5rem;
   width: 100%;
 }
 
 .album-details-header-edit > img {
-  margin-right: 2rem;
   display: block;
   max-width: 200px;
-  min-width: 100px;
+  max-height: 200px;
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
@@ -37,11 +29,9 @@
 }
 
 .album-description > p {
-  margin-top: 0.5rem;
 }
 
 .tracklist-table {
-  table-layout: fixed;
   width: 100%;
 }
 
@@ -54,6 +44,5 @@
 }
 
 .tracklist-table > thead th:nth-child(3) {
-  width: 5%;
 }
 

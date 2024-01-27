@@ -12,10 +12,25 @@ function AlbumDetails(props) {
   const [songInfo, setSongInfo] = useState([{}])
 
   const { id } = useParams()
-  const navigate = useNavigate()
-  const moveToEdit = () => {
-    navigate(`/albums/${id}/edit`)
-  }
+
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+  const breakpoint = 600
+  const [width, setWidth] = useState()
+
+  useEffect(() => {
+    const handleResizeWindow = () => setInnerWidth(window.innerWidth)
+
+    window.addEventListener("resize", handleResizeWindow)
+
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow)
+    }
+  }, [])
+  
+  useEffect(() => {
+    let temp = breakpoint > innerWidth ? breakpoint : innerWidth
+    setWidth(temp)
+  }, [innerWidth])
 
   useEffect(() => {
     setAlbum(props.album)
@@ -25,27 +40,82 @@ function AlbumDetails(props) {
   console.log(songInfo)
 
   return (
-    <div className='container album-details'>
-      <div className="album-details-header">
+    <div 
+      className='container album-details'
+      style={{
+        padding: `${width/90}px`
+      }}
+    >
+      <div 
+        className="album-details-header"
+        style={{
+          height: `${width/8.5}px`,
+        }}>
         <div className='album-details-header-inner'>
-          <img src={album.coverImageUrl} alt="album-cover" />
+          <img 
+            src={album.coverImageUrl} 
+            alt="album-cover" 
+            style={{
+              height: `${width/8.5}px`,
+              marginRight:`${width/150}px`
+            }}
+          />
           <div>
-            <h1>{album?.albumName} - {album?.author}</h1>   
-            <div className='album-description'>
-              <p> Year of release: {album?.releaseYear}</p>
+            <p
+              className='album-details-title'
+              style={{
+                fontSize: `${width/50}px`
+              }}
+            >{album?.albumName} - {album?.author}</p>   
+            <div 
+              className="album-description"
+              style={{
+                marginTop: `${width/200}px`, 
+                fontSize: `${width/80}px`
+            }}>
+              released in: {album?.releaseYear}
             </div>
           </div>
         </div>
-        <Link className='card-button' to={`/albums/${id}/edit`}>Edit</Link>
+        <div
+          style={{
+            height: '100%',
+          }}>
+          <Link 
+            className='card-button' 
+            to={`/albums/${id}/edit`}
+            style={{
+              fontSize: '1rem', 
+              padding: '0.2rem', 
+            }}
+          >Edit</Link>
+        </div>
       </div>
-      <div className="container album-details-body">
+
+      <div 
+        className="album-details-body"
+      >
         <p>Tracklist</p>
-        <table className='tracklist-table'>
+        <table 
+          className='tracklist-table'
+        >
           <thead>
             <tr>
-              <th scope='column'></th>
-              <th scope='column'></th>
-              <th scope='column'></th>
+              <th 
+                scope='column'
+              ></th>
+              <th 
+                scope='column'
+                style={{
+                  width: `${94 - (1900-width)/100}%`
+                }}
+              ></th>
+              <th 
+                scope='column'
+                style={{
+                  width: `${(1900-width)/100 + 1}%`
+                }}
+              ></th>
             </tr>
           </thead>
           <tbody>

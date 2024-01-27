@@ -11,7 +11,7 @@ const AddAlbumHeader = ({inputs, setInputs}) => {
 
 
   return (
-    <div className='shadow' style={{padding: '2rem', paddingBottom: '1rem'}}>
+    <div className='shadow' style={{padding: '1rem 0'}}>
       <div className='add-album-entry'>
         <label>Album name</label>
         <input 
