@@ -4,6 +4,7 @@ import NavBar from '../NavBar'
 import Header from '../Header'
 import SearchBar from '../SearchBar'
 import { useLocation } from 'react-router-dom'
+import axiosPrivate from '../../api/axios'
 
 function AlbumsSearchPageAlt() {
 
