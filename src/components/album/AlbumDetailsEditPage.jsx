@@ -19,7 +19,7 @@ function AlbumDetailsEditPage() {
   useEffect(() => {
     const getData = async () => {
       try {
-          const response = await axiosPrivate.get(`http://localhost:8080/api/album/byId/${id}`)
+          const response = await axiosPrivate.get(`album/byId/${id}`)
           setAlbum(response.data)
           setLoaded(true)
       } catch (error) {

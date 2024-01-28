@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'    
 import AlbumDetails from './AlbumDetails'
 import NavBarWrapper from '../NavBarWrapper'
+import { axiosPrivate } from '../../api/axios'
 
 function AlbumDetailsPage() {
 
@@ -10,19 +11,10 @@ function AlbumDetailsPage() {
   const [album, setAlbum] = useState({})
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/album/byId/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      setAlbum(data)
+    axiosPrivate.get(`/album/byId/${id}`).then((res) => {
+      setAlbum(res.data)
     })
   }, [])
-
-  console.log('album', album)
 
   return (
     <div>

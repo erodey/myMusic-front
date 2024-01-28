@@ -14,16 +14,8 @@ function AlbumsSearchPageAlt() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/album/searchAlbum/${text}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        setAlbums(data)
-        setLoaded(true)
+    axiosPrivate.get(`/album/searchAlbum/${text}`).then((res) => {
+      setAlbums(res.data)
     })
   }, [])
 
