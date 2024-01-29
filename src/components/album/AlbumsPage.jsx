@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react'
 import AlbumCard from './AlbumCard'
 import Header from '../Header'
 import SearchBar from '../SearchBar'
-import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import AddAlbumLink from './AddAlbumLink'
 import NavBarWrapper from '../NavBarWrapper'
+import axios from '../../api/axios'
 
 function AlbumsPage() {
 
   const [albums, setAlbums] = useState([])
   const [loaded, setLoaded] = useState(false)
-  const axiosPrivate = useAxiosPrivate()
 
   useEffect(() => {
     
-    axiosPrivate.get("/album/all").then((res) => {
+    axios.get("/album/all").then((res) => {
       setAlbums(res.data)
       setLoaded(true)
     })

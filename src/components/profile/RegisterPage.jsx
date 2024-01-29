@@ -42,8 +42,9 @@ function RegisterPage() {
         password: `${password}`
       }
 
-      axiosPrivate.post('/auth/register', jsonData )
-        .then((response) => {
+      axios.post('/auth/register', jsonData, {
+        withCredentials: true
+        }).then((response) => {
           navigate("/login")
         }).catch((error) => {
           console.log('error: ', error)
