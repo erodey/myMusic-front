@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import "../../styles/AuthenticationPage.css"
-import NavBar from '../NavBar'
 import { Link, useNavigate } from 'react-router-dom'
-import { axiosPrivate } from '../../api/axios'
+import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import NavBarWrapper from '../NavBarWrapper'
@@ -16,7 +15,9 @@ function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState('')
   const [errorClass, setErrorClass] = useState('hidden')
   const [responseMessage, setResponseMessage] = useState('')
+
   const navigate = useNavigate()
+  const axiosPrivate = useAxiosPrivate()
   // const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
   // const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 

@@ -4,7 +4,7 @@ import NavBar from '../NavBar'
 import Header from '../Header'
 import SearchBar from '../SearchBar'
 import { useLocation } from 'react-router-dom'
-import axiosPrivate from '../../api/axios'
+import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 
 function AlbumsSearchPageAlt() {
 
@@ -13,6 +13,8 @@ function AlbumsSearchPageAlt() {
 
   const [albums, setAlbums] = useState([])
   const [loaded, setLoaded] = useState(false)
+
+  const axiosPrivate = useAxiosPrivate()
 
   useEffect(() => {
     axiosPrivate.get(`/album/searchAlbum/${text}`).then((res) => {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "../../styles/AuthenticationPage.css"
 import axios from '../../api/axios'
-import NavBar from '../NavBar'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
 import NavBarWrapper from '../NavBarWrapper'
@@ -28,11 +27,6 @@ function LoginPage() {
 
     axios.post('/auth/login', jsonData, {
       withCredentials: true
-    // })
-    // axios({
-    //     url: '/api/auth/login',
-    //     data: jsonData,
-    //     method: 'post'
       }).then((response) => {
 
         const accessToken = response.data.accessToken

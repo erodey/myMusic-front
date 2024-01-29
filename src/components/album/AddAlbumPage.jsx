@@ -100,7 +100,7 @@ const AddAlbumPage = () => {
     console.log('inputs', inputs)
     axiosPrivate.post(`/album/addAlbum`, inputs)
     .then(res => {
-        console.log('rated album', res.data)
+        console.log('added album', res.data)
       })
     .catch(err => console.log('error: ', err.response))
   }
