@@ -14,7 +14,7 @@ function Header({topic}) {
       setDesciption("All the albums' information is available here")
     } else if(topic === "about"){
       setTitle("Welcome")
-      setDesciption("What is this website for?")
+      setStyle({height: '10vh',})
     } else if(topic === "profile"){
       setStyle({paddingTop: '0',})
       setTitle(`Hello, ${auth.username}`)

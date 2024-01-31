@@ -1,5 +1,5 @@
 .rating-form-body {
-  width: 800px;
+  width: calc(400px + 10vw);
 }
 
 .cution {
