@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(350px + 7vw);
+  width: 600px;
 }
 
 .song-entry-sub{

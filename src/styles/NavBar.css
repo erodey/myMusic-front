@@ -19,7 +19,6 @@ li a {
   height: 50px;
   min-height: 30px;
   position: fixed;
-  z-index: 1;
   left: 20%;
   right: 20%;
   display: flex;

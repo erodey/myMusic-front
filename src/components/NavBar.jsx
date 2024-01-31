@@ -6,7 +6,7 @@ function NavBar() {
   let path = window.location.pathname
 
   let className = "container"
-  if (path != '/' && path != '/home' && path != '/about') 
+  if (path != '/' && path != '/home') 
     className += ' not-in-home'
   else className += '' 
 

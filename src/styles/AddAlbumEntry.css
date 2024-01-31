@@ -1,9 +1,9 @@
 .add-album-entry {
-  width: calc(350px + 7vw);
+  width: 600px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  padding-right: calc(10px + 2vw);
-  padding-left: calc(10px + 2vw);
+  padding-right: 3rem;
+  padding-left: 3rem;
 }
 

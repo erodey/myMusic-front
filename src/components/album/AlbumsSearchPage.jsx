@@ -37,9 +37,7 @@ function AlbumsSearchPage() {
                   <AlbumCard key={album.albumId} 
                     albumId={album.albumId} 
                     src={album.coverImageUrl} 
-                    albumName={album.albumName}
-                    author={album.author}
-                    releaseYear={album.releaseYear}
+                    title={album.albumName + ' - ' + album.author} 
                     description='this is description'/>
                 )
               }) : <div className='album-not-found container centered-content centered-text'> <h2>Could not find any album match for "{text}" in the database :( </h2> </div>

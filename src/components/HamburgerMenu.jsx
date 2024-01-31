@@ -15,7 +15,7 @@ const HamburgerMenu = () => {
   let path = window.location.pathname
 
   useEffect(() => {
-    if (path != '/' && path != '/home' && path != '/about'){
+    if (path == '/' || path == '/home'){
       setClassName('in-home')
       setInHome(true)
     } else {
